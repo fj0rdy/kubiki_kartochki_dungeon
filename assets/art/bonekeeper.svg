@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- посох -->
+    <path d="M176 24 L166 208" stroke-width="8" stroke="#5c4a34" fill="none"/>
+    <circle cx="177" cy="20" r="12" fill="#ded0ad"/>
+    <!-- мантия -->
+    <path d="M72 74 L34 208 L166 208 L128 74 Z" fill="#3a2b3f"/>
+    <g stroke="#241a29" stroke-width="3" fill="none">
+      <path d="M80 110 L64 208"/><path d="M120 110 L136 208"/><path d="M100 100 L100 208"/>
+    </g>
+    <!-- грудная клетка -->
+    <path d="M74 72 L126 72 L122 128 L100 146 L78 128 Z" fill="#cbb894"/>
+    <g stroke="#3a2717" stroke-width="3.5" fill="none">
+      <path d="M82 90 L118 90"/><path d="M80 106 L120 106"/><path d="M84 122 L116 122"/>
+    </g>
+    <!-- руки -->
+    <path d="M74 80 L52 124 L66 148" fill="none" stroke-width="7" stroke="#b8a582"/>
+    <path d="M126 80 L152 118 L166 108" fill="none" stroke-width="7" stroke="#b8a582"/>
+    <!-- плечи-эполеты из костей -->
+    <path d="M72 74 C50 70 40 86 48 102 L78 94 Z" fill="#4a3a52"/>
+    <path d="M128 74 C150 70 160 86 152 102 L122 94 Z" fill="#4a3a52"/>
+    <!-- череп -->
+    <path d="M100 14 C122 14 136 30 134 50 C132 64 122 72 100 74 C78 72 68 64 66 50 C64 30 78 14 100 14 Z" fill="#ded0ad"/>
+    <path d="M88 62 L88 72 M100 64 L100 74 M112 62 L112 72" stroke-width="3"/>
+    <!-- корона -->
+    <path d="M66 26 L60 6 L76 18 L86 2 L100 16 L114 2 L124 18 L140 6 L134 26 Z" fill="#d8ab55"/>
+  </g>
+  <ellipse cx="86" cy="44" rx="9" ry="10" fill="#140d06"/>
+  <ellipse cx="114" cy="44" rx="9" ry="10" fill="#140d06"/>
+  <circle cx="86" cy="44" r="4" fill="#ffcf8a"/>
+  <circle cx="114" cy="44" r="4" fill="#ffcf8a"/>
+</svg>

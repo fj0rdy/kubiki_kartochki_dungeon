@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- пламенный шлейф -->
+    <path d="M70 92 L14 208 L186 208 L130 92 Z" fill="#5e2a1e"/>
+    <path d="M70 140 C58 168 46 182 34 208 L166 208 C154 182 142 168 130 140 Z" fill="#8e3a22"/>
+    <path d="M84 176 C80 190 76 198 70 208 L130 208 C124 198 120 190 116 176 Z" fill="#c4552b"/>
+    <!-- торс -->
+    <path d="M76 66 L124 66 L120 126 L100 144 L80 126 Z" fill="#cbb894"/>
+    <g stroke="#3a2717" stroke-width="3" fill="none">
+      <path d="M84 86 L116 86"/><path d="M82 104 L118 104"/>
+    </g>
+    <!-- воротник -->
+    <path d="M76 66 C50 58 36 78 44 100 L80 88 Z" fill="#8e3a22"/>
+    <path d="M124 66 C150 58 164 78 156 100 L120 88 Z" fill="#8e3a22"/>
+    <!-- руки -->
+    <path d="M76 78 L52 122 L70 140" stroke-width="7" stroke="#b8a582" fill="none"/>
+    <path d="M124 78 L148 122 L130 140" stroke-width="7" stroke="#b8a582" fill="none"/>
+    <!-- череп -->
+    <path d="M100 16 C120 16 132 30 130 48 C128 60 118 66 100 68 C82 66 72 60 70 48 C68 30 80 16 100 16 Z" fill="#ded0ad"/>
+    <path d="M92 58 L92 68 M100 60 L100 68 M108 58 L108 68" stroke-width="3"/>
+    <!-- высокая корона -->
+    <path d="M68 26 L62 0 L80 14 L92 -2 L100 14 L108 -2 L120 14 L138 0 L132 26 Z" fill="#d8ab55"/>
+  </g>
+  <ellipse cx="87" cy="42" rx="8" ry="9" fill="#140d06"/>
+  <ellipse cx="113" cy="42" rx="8" ry="9" fill="#140d06"/>
+  <circle cx="87" cy="42" r="3.6" fill="#ffcf8a"/>
+  <circle cx="113" cy="42" r="3.6" fill="#ffcf8a"/>
+</svg>

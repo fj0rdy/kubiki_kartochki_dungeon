@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- меч за спиной -->
+    <path d="M172 22 L150 150" stroke-width="9" stroke="#8a7c68"/>
+    <path d="M160 44 L182 52" stroke-width="7" stroke="#5c4a34"/>
+    <!-- плащ -->
+    <path d="M64 70 L40 208 L160 208 L136 70 Z" fill="#592a20"/>
+    <!-- ноги -->
+    <path d="M78 208 L80 150 L120 150 L122 208" fill="#6e6455"/>
+    <!-- кираса -->
+    <path d="M62 70 L138 70 L132 128 L100 148 L68 128 Z" fill="#a1937c"/>
+    <path d="M100 74 L100 144" stroke-width="3"/>
+    <g stroke="#4a3f2e" stroke-width="3" fill="none">
+      <path d="M70 92 L130 92"/>
+      <path d="M72 110 L128 110"/>
+    </g>
+    <!-- наплечники -->
+    <path d="M62 70 C42 68 32 84 38 102 L66 96 Z" fill="#b8a98f"/>
+    <path d="M138 70 C158 68 168 84 162 102 L134 96 Z" fill="#b8a98f"/>
+    <!-- руки -->
+    <path d="M40 100 L34 140 L58 150" fill="#6e6455"/>
+    <path d="M160 100 L166 140 L142 150" fill="#6e6455"/>
+    <!-- шлем -->
+    <path d="M76 68 L76 36 C76 22 86 12 100 12 C114 12 124 22 124 36 L124 68 Z" fill="#b8a98f"/>
+    <path d="M100 12 L100 4 L108 10" fill="#592a20"/>
+  </g>
+  <path d="M80 34 L120 34 L120 44 L80 44 Z" fill="#140d06"/>
+  <path d="M96 44 L104 44 L104 62 L96 62 Z" fill="#140d06"/>
+  <circle cx="89" cy="39" r="3.5" fill="#ffcf8a"/>
+  <circle cx="111" cy="39" r="3.5" fill="#ffcf8a"/>
+</svg>

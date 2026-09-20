@@ -1,0 +1,744 @@
+{
+  "_": "РЕЛИКВИИ. Постоянные предметы: подобрал — работает до конца забега.",
+  "_how": "Реликвия — это набор числовых свойств. Модель складывает одноимённые свойства всех реликвий и спрашивает сумму там, где она нужна. Чтобы придумать новую, не нужен код: возьми готовое свойство из списка ниже и поставь своё число.",
+  "_props": {
+    "max_hp": "+к максимуму здоровья в начале забега",
+    "start_gold": "+золота в начале забега",
+    "gold_bonus": "+% к золоту за комнаты",
+    "extra_die_slot": "+слот под кубик в мешочке",
+    "heal_after_fight": "+лечение после каждого боя",
+    "rest_heal_bonus": "+% к лечению на привале",
+    "shop_discount": "−% к ценам в лавке",
+    "combat_start_block": "блок в начале боя",
+    "combat_start_strength": "сила в начале боя",
+    "combat_start_thorns": "шипы в начале боя",
+    "turn_block": "блок каждый ход",
+    "turn_self_damage": "−здоровья каждый ход (цена сильной реликвии)",
+    "hand_size": "±карт в руке",
+    "damage_bonus": "+урон всех твоих ударов",
+    "block_bonus": "+весь получаемый блок",
+    "poison_bonus": "+яд при наложении",
+    "cooldown_off": "−ход перезарядки всем кубикам (минимум 1)",
+    "element_cooldown_off + element": "−ход перезарядки кубикам этой стихии",
+    "power_threshold_down": "Мощь срабатывает на N граней раньше",
+    "draw_on_power": "добор карт при Мощи",
+    "damage_on_power": "+урон при Мощи",
+    "reroll_ones": "единица перебрасывается",
+    "heal_on_kill": "лечение за убитого врага",
+    "enemy_strength": "враги начинают бой с этой силой (цена договора)",
+    "enemy_hp_bonus": "+% здоровья всем врагам (цена договора)",
+    "burn_bonus": "+урон ожога каждый ход",
+    "refresh_cap_up": "+потолок возврата кубиков за ход",
+    "light_draws": "+сколько раз за ход свет может добрать",
+    "dark_free": "отклик тьмы не стоит здоровья",
+    "resonance_up": "+сила любого отклика стихии",
+    "pair_fast": "список стихий, которые остывают на ход быстрее",
+    "pair_slow": "список стихий, которые остывают на ход дольше",
+    "ignore_rest_penalty": "правило акта не режет лечение",
+    "curse_cap": "сколько проклятий максимум может попасть в колоду за забег",
+    "uses": "сколько боёв реликвия работает (без него — весь забег)"
+  },
+  "_pools": "Из common и uncommon падают с обычных элит и в лавке, rare — с элит поздних актов, boss — только с боссов. В каждом пуле должно быть заметно больше вещей, чем игрок успевает взять за забег: иначе к третьему боссу выбор из трёх превращается в выбор из того, что осталось.",
+  "pools": {
+    "common": [
+      "bone_charm",
+      "whet_ring",
+      "thick_hide",
+      "wide_pouch",
+      "ember_coal",
+      "frost_shard",
+      "green_seed",
+      "counting_beads",
+      "pilgrim_staff",
+      "lead_weight",
+      "boiled_leather",
+      "fat_purse"
+    ],
+    "uncommon": [
+      "sixth_finger",
+      "dead_mans_die",
+      "keen_eye",
+      "iron_grip",
+      "venom_flask",
+      "oiled_bag",
+      "warm_bedroll",
+      "merchant_seal",
+      "iron_lung",
+      "clean_water",
+      "borrowed_shield"
+    ],
+    "rare": [
+      "gamblers_skull",
+      "bloodstone",
+      "first_blood",
+      "thorn_crown",
+      "hollow_heart",
+      "cracked_hourglass",
+      "last_ember",
+      "split_stone",
+      "kings_coin",
+      "witch_thimble",
+      "long_lens"
+    ],
+    "boss": [
+      "iron_crown",
+      "black_ledger",
+      "weighted_dice",
+      "hollow_crown",
+      "gilded_ledger",
+      "bonesaw",
+      "frozen_heart",
+      "oracle_lens",
+      "ember_womb",
+      "serpent_coil",
+      "clockwork_hand",
+      "pilgrim_crown"
+    ],
+    "pact": [
+      "ash_bargain",
+      "greed_writ",
+      "heavy_oath",
+      "open_wound",
+      "bone_accord",
+      "blind_fury",
+      "borrowed_hands",
+      "silent_vow",
+      "venom_pact",
+      "blood_deal",
+      "brittle_genius",
+      "long_memory",
+      "ash_tithe",
+      "hungry_blade",
+      "vow_ember_frost",
+      "vow_root_dawn",
+      "vow_ash_rot",
+      "vow_frost_dark",
+      "vow_dawn_ember",
+      "vow_root_frost",
+      "vow_dark_dawn",
+      "vow_ember_root",
+      "vow_frost_ash",
+      "vow_all_five"
+    ]
+  },
+  "bone_charm": {
+    "name": "Костяной оберег",
+    "text": "В начале каждого боя +6 блока.",
+    "icon": "block",
+    "rarity": "common",
+    "combat_start_block": 6
+  },
+  "whet_ring": {
+    "name": "Кольцо точильщика",
+    "text": "Все твои удары наносят +2 урона.",
+    "icon": "attack",
+    "rarity": "common",
+    "damage_bonus": 2
+  },
+  "thick_hide": {
+    "name": "Дублёная шкура",
+    "text": "Весь получаемый блок больше на 2.",
+    "icon": "defend",
+    "rarity": "common",
+    "block_bonus": 2
+  },
+  "wide_pouch": {
+    "name": "Широкий мешочек",
+    "text": "В мешочек влезает на один кубик больше.",
+    "icon": "chest",
+    "rarity": "common",
+    "extra_die_slot": 1
+  },
+  "ember_coal": {
+    "name": "Тёплый уголь",
+    "text": "Огненные кубики остывают на ход быстрее.",
+    "icon": "fire",
+    "rarity": "common",
+    "element_cooldown_off": 1,
+    "element": "fire"
+  },
+  "frost_shard": {
+    "name": "Осколок наледи",
+    "text": "Ледяные кубики остывают на ход быстрее.",
+    "icon": "ice",
+    "rarity": "common",
+    "element_cooldown_off": 1,
+    "element": "ice"
+  },
+  "green_seed": {
+    "name": "Зелёное семя",
+    "text": "После каждого боя лечишься ещё на 8.",
+    "icon": "nature",
+    "rarity": "common",
+    "heal_after_fight": 8
+  },
+  "counting_beads": {
+    "name": "Счётные бусы",
+    "text": "В начале забега +50 золота, и золота приносит на четверть больше.",
+    "icon": "gold",
+    "rarity": "common",
+    "start_gold": 50,
+    "gold_bonus": 25
+  },
+  "sixth_finger": {
+    "name": "Шестой палец",
+    "text": "В руке на одну карту больше.",
+    "icon": "scroll",
+    "rarity": "uncommon",
+    "hand_size": 1
+  },
+  "dead_mans_die": {
+    "name": "Кубик мертвеца",
+    "text": "Выпавшая единица перебрасывается один раз.",
+    "icon": "hex",
+    "rarity": "uncommon",
+    "reroll_ones": 1
+  },
+  "keen_eye": {
+    "name": "Острый глаз",
+    "text": "Мощь срабатывает на грань раньше.",
+    "icon": "power_eye",
+    "rarity": "uncommon",
+    "power_threshold_down": 1
+  },
+  "iron_grip": {
+    "name": "Железная хватка",
+    "text": "Каждый ход +3 блока.",
+    "icon": "block",
+    "rarity": "uncommon",
+    "turn_block": 3
+  },
+  "venom_flask": {
+    "name": "Склянка яда",
+    "text": "Яд накладывается на 2 больше.",
+    "icon": "poison",
+    "rarity": "uncommon",
+    "poison_bonus": 2
+  },
+  "oiled_bag": {
+    "name": "Промасленный мешочек",
+    "text": "Все кубики остывают на ход быстрее.",
+    "icon": "chest",
+    "rarity": "uncommon",
+    "cooldown_off": 1
+  },
+  "warm_bedroll": {
+    "name": "Тёплая скатка",
+    "text": "На привале лечишься вдвое лучше.",
+    "icon": "rest",
+    "rarity": "uncommon",
+    "rest_heal_bonus": 100
+  },
+  "merchant_seal": {
+    "name": "Печать торговца",
+    "text": "В лавке всё дешевле на четверть.",
+    "icon": "shop",
+    "rarity": "uncommon",
+    "shop_discount": 25
+  },
+  "gamblers_skull": {
+    "name": "Череп игрока",
+    "text": "Когда выпадает Мощь, добираешь карту.",
+    "icon": "power_eye",
+    "rarity": "rare",
+    "draw_on_power": 1
+  },
+  "bloodstone": {
+    "name": "Кровавик",
+    "text": "За каждого убитого врага +12 здоровья.",
+    "icon": "heal",
+    "rarity": "rare",
+    "heal_on_kill": 12
+  },
+  "first_blood": {
+    "name": "Первая кровь",
+    "text": "В начале боя +3 силы.",
+    "icon": "strength",
+    "rarity": "rare",
+    "combat_start_strength": 3
+  },
+  "thorn_crown": {
+    "name": "Терновый венец",
+    "text": "В начале боя +4 шипов.",
+    "icon": "thorns",
+    "rarity": "rare",
+    "combat_start_thorns": 4
+  },
+  "hollow_heart": {
+    "name": "Полое сердце",
+    "text": "+25 к максимуму здоровья.",
+    "icon": "heal",
+    "rarity": "rare",
+    "max_hp": 25
+  },
+  "iron_crown": {
+    "name": "Железный венец",
+    "text": "+2 урона и +2 блока, но в руке на карту меньше.",
+    "icon": "crown",
+    "rarity": "boss",
+    "damage_bonus": 2,
+    "block_bonus": 2,
+    "hand_size": -1
+  },
+  "black_ledger": {
+    "name": "Чёрная книга",
+    "text": "Каждый ход добираешь карту, но теряешь 2 здоровья.",
+    "icon": "scroll",
+    "rarity": "boss",
+    "hand_size": 1,
+    "turn_self_damage": 2
+  },
+  "weighted_dice": {
+    "name": "Налитые кубики",
+    "text": "Мощь срабатывает на грань раньше и бьёт на 3 сильнее, но кубики остывают на ход дольше.",
+    "icon": "power_eye",
+    "rarity": "boss",
+    "power_threshold_down": 1,
+    "damage_on_power": 3,
+    "cooldown_off": -1
+  },
+  "_pacts": "ДОГОВОРЫ — сильные реликвии, у каждой есть цена. Предлагаются по три после обычного боя, и от них можно отказаться. Смысл в том, чтобы игрок сам решал, чем платит за силу: здоровьем, картами в руке, золотом или тем, что враги станут крепче.",
+  "ash_bargain": {
+    "name": "Пепельный договор",
+    "text": "+4 к урону всех твоих ударов. Враги начинают бой с +2 силы.",
+    "icon": "attack",
+    "rarity": "pact",
+    "damage_bonus": 4,
+    "enemy_strength": 2
+  },
+  "greed_writ": {
+    "name": "Жадная грамота",
+    "text": "Золота вдвое больше. После боя лечишься на 9 меньше.",
+    "icon": "gold",
+    "rarity": "pact",
+    "gold_bonus": 100,
+    "heal_after_fight": -9
+  },
+  "heavy_oath": {
+    "name": "Тяжёлая клятва",
+    "text": "+7 блока в начале каждого боя. В руке на карту меньше.",
+    "icon": "block",
+    "rarity": "pact",
+    "combat_start_block": 7,
+    "hand_size": -1
+  },
+  "open_wound": {
+    "name": "Открытая рана",
+    "text": "В руке на карту больше. Каждый ход теряешь 2 здоровья.",
+    "icon": "scroll",
+    "rarity": "pact",
+    "hand_size": 1,
+    "turn_self_damage": 2
+  },
+  "bone_accord": {
+    "name": "Костяной сговор",
+    "text": "Все кубики остывают на ход быстрее. −22 к максимуму здоровья.",
+    "icon": "chest",
+    "rarity": "pact",
+    "cooldown_off": 1,
+    "max_hp": -22
+  },
+  "blind_fury": {
+    "name": "Слепая ярость",
+    "text": "Мощь срабатывает на 2 грани раньше. Весь получаемый блок слабее на 3.",
+    "icon": "power_eye",
+    "rarity": "pact",
+    "power_threshold_down": 2,
+    "block_bonus": -3
+  },
+  "borrowed_hands": {
+    "name": "Чужие руки",
+    "text": "+2 слота под кубик. Враги крепче на 15%.",
+    "icon": "chest",
+    "rarity": "pact",
+    "extra_die_slot": 2,
+    "enemy_hp_bonus": 15
+  },
+  "silent_vow": {
+    "name": "Обет молчания",
+    "text": "При Мощи добираешь карту. На привале лечишься вдвое хуже.",
+    "icon": "power_eye",
+    "rarity": "pact",
+    "draw_on_power": 1,
+    "rest_heal_bonus": -50
+  },
+  "venom_pact": {
+    "name": "Ядовитый пакт",
+    "text": "Яд накладывается на 4 больше. −3 к урону обычных ударов.",
+    "icon": "poison",
+    "rarity": "pact",
+    "poison_bonus": 4,
+    "damage_bonus": -3
+  },
+  "blood_deal": {
+    "name": "Кровавая сделка",
+    "text": "За каждого убитого врага +22 здоровья. Каждый ход теряешь 3.",
+    "icon": "heal",
+    "rarity": "pact",
+    "heal_on_kill": 22,
+    "turn_self_damage": 3
+  },
+  "brittle_genius": {
+    "name": "Хрупкий гений",
+    "text": "+3 к урону и +3 к блоку. −26 к максимуму здоровья.",
+    "icon": "strength",
+    "rarity": "pact",
+    "damage_bonus": 3,
+    "block_bonus": 3,
+    "max_hp": -26
+  },
+  "long_memory": {
+    "name": "Долгая память",
+    "text": "Единица перебрасывается, Мощь на грань раньше. Кубики остывают на ход дольше.",
+    "icon": "hex",
+    "rarity": "pact",
+    "reroll_ones": 1,
+    "power_threshold_down": 1,
+    "cooldown_off": -1
+  },
+  "ash_tithe": {
+    "name": "Пепельная десятина",
+    "text": "+3 шипов и +5 блока в начале боя. Золота на треть меньше.",
+    "icon": "thorns",
+    "rarity": "pact",
+    "combat_start_thorns": 3,
+    "combat_start_block": 5,
+    "gold_bonus": -33
+  },
+  "hungry_blade": {
+    "name": "Голодный клинок",
+    "text": "+6 к урону всех ударов. После боя не лечишься вовсе.",
+    "icon": "attack",
+    "rarity": "pact",
+    "damage_bonus": 6,
+    "heal_after_fight": -99
+  },
+  "_seals": "ПЕЧАТИ не падают и не продаются. Печать приходит сама, когда в мешочке набирается три кубика одной стихии (у равновесия — по одному каждой из пяти). Это единственная награда за то, КАК собран мешочек, а не за то, что попалось: «ещё один огненный» перестаёт быть просто кубиком и становится шагом к правилу.",
+  "seals": {
+    "fire": "seal_fire",
+    "ice": "seal_ice",
+    "nature": "seal_nature",
+    "light": "seal_light",
+    "dark": "seal_dark"
+  },
+  "seal_balance_id": "seal_balance",
+  "seal_fire": {
+    "name": "Печать пепла",
+    "text": "Три огненных кубика. Ожог жжёт на 2 сильнее каждый ход.",
+    "icon": "fire",
+    "rarity": "seal",
+    "element": "fire",
+    "burn_bonus": 2
+  },
+  "seal_ice": {
+    "name": "Печать наледи",
+    "text": "Три ледяных кубика. В начале боя +5 блока, и весь блок больше на 2.",
+    "icon": "ice",
+    "rarity": "seal",
+    "element": "ice",
+    "combat_start_block": 5,
+    "block_bonus": 2
+  },
+  "seal_nature": {
+    "name": "Печать корня",
+    "text": "Три природных кубика. За ход можно вернуть в строй на кубик больше.",
+    "icon": "nature",
+    "rarity": "seal",
+    "element": "nature",
+    "refresh_cap_up": 1
+  },
+  "seal_light": {
+    "name": "Печать зари",
+    "text": "Три светлых кубика. Свет добирает дважды за ход, а не однажды.",
+    "icon": "power_eye",
+    "rarity": "seal",
+    "element": "light",
+    "light_draws": 1
+  },
+  "seal_dark": {
+    "name": "Печать ущерба",
+    "text": "Три тёмных кубика. Отклик тьмы больше не стоит тебе здоровья.",
+    "icon": "hex",
+    "rarity": "seal",
+    "element": "dark",
+    "dark_free": 1
+  },
+  "seal_balance": {
+    "name": "Печать равновесия",
+    "text": "По кубику каждой из пяти стихий. Любой отклик срабатывает на единицу сильнее.",
+    "icon": "crown",
+    "rarity": "seal",
+    "element": "none",
+    "resonance_up": 1
+  },
+  "vow_ember_frost": {
+    "name": "Завет угля и наледи",
+    "icon": "fire",
+    "text": "Огонь и лёд остывают на ход быстрее. Природные и светлые — на ход дольше.",
+    "rarity": "pact",
+    "pair_fast": [
+      "fire",
+      "ice"
+    ],
+    "pair_slow": [
+      "nature",
+      "light"
+    ]
+  },
+  "vow_root_dawn": {
+    "name": "Завет корня и зари",
+    "icon": "nature",
+    "text": "Природа и свет остывают на ход быстрее. Огненные и тёмные — на ход дольше.",
+    "rarity": "pact",
+    "pair_fast": [
+      "nature",
+      "light"
+    ],
+    "pair_slow": [
+      "fire",
+      "dark"
+    ]
+  },
+  "vow_ash_rot": {
+    "name": "Завет пепла и гнили",
+    "icon": "poison",
+    "text": "Ожог жжёт на 2 сильнее, яд накладывается на 2 больше. −18 к максимуму здоровья.",
+    "rarity": "pact",
+    "burn_bonus": 2,
+    "poison_bonus": 2,
+    "max_hp": -18
+  },
+  "vow_frost_dark": {
+    "name": "Завет наледи и ущерба",
+    "icon": "ice",
+    "text": "+6 блока в начале боя, отклик тьмы бесплатен. Лечение после боя вдвое меньше.",
+    "rarity": "pact",
+    "combat_start_block": 6,
+    "dark_free": 1,
+    "heal_after_fight": -9
+  },
+  "vow_dawn_ember": {
+    "name": "Завет зари и угля",
+    "icon": "attack",
+    "text": "+3 к урону и добор при Мощи. Враги начинают бой с +2 силы.",
+    "rarity": "pact",
+    "damage_bonus": 3,
+    "draw_on_power": 1,
+    "enemy_strength": 2
+  },
+  "vow_root_frost": {
+    "name": "Завет корня и наледи",
+    "icon": "defend",
+    "text": "Весь блок больше на 3, за ход можно вернуть на кубик больше. −3 к урону твоих ударов.",
+    "rarity": "pact",
+    "block_bonus": 3,
+    "refresh_cap_up": 1,
+    "damage_bonus": -3
+  },
+  "vow_dark_dawn": {
+    "name": "Завет ущерба и зари",
+    "icon": "power_eye",
+    "text": "Свет добирает дважды за ход. Каждый ход теряешь 2 здоровья.",
+    "rarity": "pact",
+    "light_draws": 1,
+    "turn_self_damage": 2
+  },
+  "vow_ember_root": {
+    "name": "Завет угля и корня",
+    "icon": "heal",
+    "text": "После боя лечишься ещё на 12, отклик срабатывает на единицу сильнее. Золота на треть меньше.",
+    "rarity": "pact",
+    "heal_after_fight": 12,
+    "resonance_up": 1,
+    "gold_bonus": -33
+  },
+  "vow_frost_ash": {
+    "name": "Завет наледи и пепла",
+    "icon": "thorns",
+    "text": "+5 шипов в начале боя. Мощь срабатывает на грань позже.",
+    "rarity": "pact",
+    "combat_start_thorns": 5,
+    "power_threshold_down": -1
+  },
+  "vow_all_five": {
+    "name": "Завет пяти",
+    "icon": "crown",
+    "text": "+1 слот под кубик и +2 к урону и блоку. В руке на карту меньше.",
+    "rarity": "pact",
+    "extra_die_slot": 1,
+    "damage_bonus": 2,
+    "block_bonus": 2,
+    "hand_size": -1
+  },
+  "iron_lung": {
+    "name": "Железные лёгкие",
+    "icon": "heal",
+    "rarity": "uncommon",
+    "text": "Правила акта больше не режут твоё лечение.",
+    "ignore_rest_penalty": 1
+  },
+  "pilgrim_staff": {
+    "name": "Посох пилигрима",
+    "icon": "rest",
+    "rarity": "common",
+    "text": "На привале лечишься на треть лучше, после боя — ещё на 6.",
+    "rest_heal_bonus": 33,
+    "heal_after_fight": 6
+  },
+  "clean_water": {
+    "name": "Чистая вода",
+    "icon": "nature",
+    "rarity": "uncommon",
+    "text": "Не больше одного проклятия попадает к тебе за забег.",
+    "curse_cap": 1
+  },
+  "lead_weight": {
+    "name": "Свинцовый грузик",
+    "icon": "attack",
+    "rarity": "common",
+    "text": "Все твои удары наносят +3 урона.",
+    "damage_bonus": 3
+  },
+  "boiled_leather": {
+    "name": "Варёная кожа",
+    "icon": "defend",
+    "rarity": "common",
+    "text": "Весь получаемый блок больше на 3.",
+    "block_bonus": 3
+  },
+  "fat_purse": {
+    "name": "Тугой кошель",
+    "icon": "gold",
+    "rarity": "common",
+    "text": "Золота приносит на треть больше.",
+    "gold_bonus": 33
+  },
+  "cracked_hourglass": {
+    "name": "Треснувшие часы",
+    "icon": "power_eye",
+    "rarity": "rare",
+    "text": "Три боя: Мощь срабатывает на 2 грани раньше. Потом часы рассыпаются.",
+    "power_threshold_down": 2,
+    "uses": 3
+  },
+  "borrowed_shield": {
+    "name": "Одолженный щит",
+    "icon": "block",
+    "rarity": "uncommon",
+    "text": "Четыре боя: +10 блока в начале боя. Потом щит возвращают.",
+    "combat_start_block": 10,
+    "uses": 4
+  },
+  "last_ember": {
+    "name": "Последний уголёк",
+    "icon": "fire",
+    "rarity": "rare",
+    "text": "Три боя: +6 к урону всех ударов. Потом уголёк гаснет.",
+    "damage_bonus": 6,
+    "uses": 3
+  },
+  "_uses": "Временная реликвия живёт uses боёв. Смысл в том, чтобы сильную награду можно было дать сразу и без оглядки на остаток забега: она вытаскивает из текущей ямы и уходит, а не превращается в постоянный перевес.",
+  "hollow_crown": {
+    "name": "Полый венец",
+    "icon": "crown",
+    "rarity": "boss",
+    "text": "+1 слот под кубик. −16 к максимуму здоровья.",
+    "extra_die_slot": 1,
+    "max_hp": -16
+  },
+  "gilded_ledger": {
+    "name": "Золочёная книга",
+    "icon": "gold",
+    "rarity": "boss",
+    "text": "Золота вдвое больше. В лавке всё дороже на четверть.",
+    "gold_bonus": 100,
+    "shop_discount": -25
+  },
+  "bonesaw": {
+    "name": "Костяная пила",
+    "icon": "attack",
+    "rarity": "boss",
+    "text": "+5 к урону всех ударов. Весь получаемый блок слабее на 3.",
+    "damage_bonus": 5,
+    "block_bonus": -3
+  },
+  "frozen_heart": {
+    "name": "Мёрзлое сердце",
+    "icon": "ice",
+    "rarity": "boss",
+    "text": "+9 блока в начале боя. После боя лечишься на 9 меньше.",
+    "combat_start_block": 9,
+    "heal_after_fight": -9
+  },
+  "oracle_lens": {
+    "name": "Линза оракула",
+    "icon": "power_eye",
+    "rarity": "boss",
+    "text": "В руке на 2 карты больше. Каждый ход теряешь 2 здоровья.",
+    "hand_size": 2,
+    "turn_self_damage": 2
+  },
+  "ember_womb": {
+    "name": "Пепельное лоно",
+    "icon": "fire",
+    "rarity": "boss",
+    "text": "Ожог жжёт на 3 сильнее. −16 к максимуму здоровья.",
+    "burn_bonus": 3,
+    "max_hp": -16
+  },
+  "serpent_coil": {
+    "name": "Змеиный виток",
+    "icon": "poison",
+    "rarity": "boss",
+    "text": "Яд накладывается на 4 больше. −3 к урону твоих ударов.",
+    "poison_bonus": 4,
+    "damage_bonus": -3
+  },
+  "clockwork_hand": {
+    "name": "Часовая рука",
+    "icon": "chest",
+    "rarity": "boss",
+    "text": "За ход можно вернуть в строй на кубик больше. Мощь срабатывает на грань позже.",
+    "refresh_cap_up": 1,
+    "power_threshold_down": -1
+  },
+  "pilgrim_crown": {
+    "name": "Венец странника",
+    "icon": "rest",
+    "rarity": "boss",
+    "text": "Все кубики остывают на ход быстрее. В руке на карту меньше.",
+    "cooldown_off": 1,
+    "hand_size": -1
+  },
+  "split_stone": {
+    "name": "Расколотый камень",
+    "icon": "block",
+    "rarity": "rare",
+    "text": "Каждый ход +5 блока.",
+    "turn_block": 5
+  },
+  "kings_coin": {
+    "name": "Королевская монета",
+    "icon": "gold",
+    "rarity": "rare",
+    "text": "В начале забега +90 золота, и золота приносит на половину больше.",
+    "start_gold": 90,
+    "gold_bonus": 50
+  },
+  "witch_thimble": {
+    "name": "Ведьмин напёрсток",
+    "icon": "poison",
+    "rarity": "rare",
+    "text": "Яд накладывается на 3 больше, и ожог жжёт на 1 сильнее.",
+    "poison_bonus": 3,
+    "burn_bonus": 1
+  },
+  "long_lens": {
+    "name": "Дальняя линза",
+    "icon": "scroll",
+    "rarity": "rare",
+    "text": "В руке на карту больше, и в начале боя +2 силы.",
+    "hand_size": 1,
+    "combat_start_strength": 2
+  }
+}

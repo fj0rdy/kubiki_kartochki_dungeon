@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M62 208 L58 156 L94 156 L94 208 Z" fill="#7d7264"/>
+    <path d="M138 208 L142 156 L106 156 L106 208 Z" fill="#7d7264"/>
+    <!-- руки от плеча до кулака -->
+    <path d="M30 88 L18 132" stroke-width="15" stroke="#6e6455" fill="none"/>
+    <path d="M170 88 L182 132" stroke-width="15" stroke="#6e6455" fill="none"/>
+    <path d="M46 62 L154 62 L166 108 L150 120 L146 162 L54 162 L50 120 L34 108 Z" fill="#8f8474"/>
+    <g stroke="#3a3229" stroke-width="3" fill="none">
+      <path d="M78 74 L86 100 L74 118 L82 148"/>
+      <path d="M124 76 L116 104 L128 124"/>
+    </g>
+    <path d="M34 66 C16 68 8 88 18 106 L48 96 Z" fill="#a1968a"/>
+    <path d="M166 66 C184 68 192 88 182 106 L152 96 Z" fill="#a1968a"/>
+    <path d="M20 126 L6 152 L28 168 L44 140 Z" fill="#7d7264"/>
+    <path d="M180 126 L194 152 L172 168 L156 140 Z" fill="#7d7264"/>
+    <path d="M78 62 L78 34 C78 22 88 14 100 14 C112 14 122 22 122 34 L122 62 Z" fill="#9d9282"/>
+  </g>
+  <rect x="80" y="32" width="40" height="9" rx="4" fill="#140d06"/>
+  <circle cx="90" cy="36" r="3.5" fill="#ffcf8a"/>
+  <circle cx="110" cy="36" r="3.5" fill="#ffcf8a"/>
+</svg>

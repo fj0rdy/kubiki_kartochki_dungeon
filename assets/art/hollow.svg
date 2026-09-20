@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- длинные ноги -->
+    <path d="M88 150 L82 208" stroke-width="9" stroke="#a08f6f" fill="none"/>
+    <path d="M112 150 L118 208" stroke-width="9" stroke="#a08f6f" fill="none"/>
+    <!-- очень длинные руки -->
+    <path d="M78 72 L58 140 L64 196" stroke-width="8" stroke="#b8a582" fill="none"/>
+    <path d="M122 72 L142 140 L136 196" stroke-width="8" stroke="#b8a582" fill="none"/>
+    <!-- узкий торс с дырой -->
+    <path d="M78 66 L122 66 L118 152 L82 152 Z" fill="#cbb894"/>
+    <ellipse cx="100" cy="108" rx="17" ry="22" fill="#140d06"/>
+    <g stroke="#3a2717" stroke-width="3" fill="none">
+      <path d="M84 80 L116 80"/><path c="" d="M84 140 L116 140"/>
+    </g>
+    <!-- вытянутая голова -->
+    <path d="M100 6 C114 6 122 18 120 34 L116 62 L84 62 L80 34 C78 18 86 6 100 6 Z" fill="#ded0ad"/>
+  </g>
+  <ellipse cx="91" cy="30" rx="6" ry="9" fill="#140d06"/>
+  <ellipse cx="109" cy="30" rx="6" ry="9" fill="#140d06"/>
+  <circle cx="91" cy="30" r="3" fill="#ffcf8a"/>
+  <circle cx="109" cy="30" r="3" fill="#ffcf8a"/>
+</svg>

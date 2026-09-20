@@ -1,0 +1,945 @@
+{
+ "_": "ВРАГИ. moves — набор действий; враг каждый ход выбирает один по весу с учётом условий.",
+ "_moves": {
+  "weight": "вес при случайном выборе (0 — только по ссылке then)",
+  "max_repeat": "сколько раз подряд можно повторить (по умолчанию 2)",
+  "first_move": "чем враг ходит в первый ход — чтобы начало боя было предсказуемым",
+  "then": "жёстко задаёт следующее действие: так делаются замахи",
+  "if_hp_below": "доступно, только когда здоровье врага ниже этой доли",
+  "once": "срабатывает один раз за бой",
+  "min_turn": "не раньше этого хода",
+  "damage/times": "урон за удар и число ударов",
+  "scale": "+столько к урону этого действия за каждое его применение",
+  "block": "блок себе (сгорает в конце его хода)",
+  "plated": "броня: работает как блок, но не сгорает в конце хода — её надо пробить",
+  "self_heal": "лечение себе",
+  "lifesteal": "лечится на столько, если удар прошёл",
+  "gain_strength": "+столько к урону всех его атак до конца боя",
+  "thorns": "игрок получает столько за каждый свой удар",
+  "vulnerable": "игрок получает +50% урона N ходов",
+  "weak/weak_turns": "удары игрока слабее на N в течение M ходов",
+  "rust": "+N ходов перезарядки всем кубикам",
+  "lock": "заклинивает один кубик: +N ходов перезарядки именно ему",
+  "curse": "id проклятия, которое ляжет в колоду боя"
+ },
+ "_art": "art — какой силуэт рисовать (см. SHAPES в scripts/ui/EnemyArt.gd)",
+ "_tuning": "godot --headless --path . res://tools/Simulate.tscn -- 100",
+ "acts": [
+  {
+   "title": "Костяные ходы",
+   "rows": [
+    6,
+    7
+   ],
+   "normal": [
+    "scavenger",
+    "chanter",
+    "gnawer",
+    "emberling",
+    "rattler"
+   ],
+   "elite": [
+    "warden",
+    "knight"
+   ],
+   "boss": [
+    "bonekeeper"
+   ]
+  },
+  {
+   "title": "Пепельные залы",
+   "rows": [
+    7,
+    8
+   ],
+   "normal": [
+    "ashmaw",
+    "hexweaver",
+    "bonepile",
+    "leech",
+    "hollow"
+   ],
+   "elite": [
+    "chainmaster",
+    "twinflame",
+    "warden"
+   ],
+   "boss": [
+    "ashqueen"
+   ]
+  },
+  {
+   "title": "Сердце кургана",
+   "rows": [
+    7,
+    8
+   ],
+   "normal": [
+    "revenant",
+    "gravemaw",
+    "shrieker",
+    "hollow"
+   ],
+   "elite": [
+    "dreadplate",
+    "marrowpriest",
+    "chainmaster"
+   ],
+   "boss": [
+    "marrowlord"
+   ]
+  }
+ ],
+ "normal": [
+  "scavenger",
+  "chanter",
+  "gnawer",
+  "emberling",
+  "rattler"
+ ],
+ "elite": [
+  "warden",
+  "knight"
+ ],
+ "boss": [
+  "bonekeeper"
+ ],
+ "scavenger": {
+  "name": "Костяной падальщик",
+  "art": "scavenger",
+  "hp": 49,
+  "first_move": "bite",
+  "_": "Простой: учит читать намерение и держать блок.",
+  "moves": [
+   {
+    "id": "bite",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 10,
+    "max_repeat": 2
+   },
+   {
+    "id": "rip",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 7,
+    "times": 2,
+    "max_repeat": 2
+   },
+   {
+    "id": "hunch",
+    "kind": "defend",
+    "weight": 30,
+    "damage": 5,
+    "block": 8,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "chanter": {
+  "name": "Пепельный чтец",
+  "art": "chanter",
+  "hp": 44,
+  "first_move": "mark",
+  "_": "Уязвимость: следующий удар больнее — самое время блокировать.",
+  "moves": [
+   {
+    "id": "mark",
+    "kind": "hex",
+    "weight": 35,
+    "damage": 6,
+    "vulnerable": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "burn",
+    "kind": "aggro",
+    "weight": 35,
+    "damage": 12,
+    "max_repeat": 2
+   },
+   {
+    "id": "mend",
+    "kind": "defend",
+    "weight": 30,
+    "block": 9,
+    "self_heal": 5,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "gnawer": {
+  "name": "Грызун праха",
+  "art": "maw",
+  "hp": 39,
+  "first_move": "nibble",
+  "_": "Много слабых ударов: блок эффективнее, чем лечение.",
+  "moves": [
+   {
+    "id": "nibble",
+    "kind": "aggro",
+    "weight": 60,
+    "damage": 5,
+    "times": 3,
+    "scale": 1,
+    "max_repeat": 3
+   },
+   {
+    "id": "burrow",
+    "kind": "defend",
+    "weight": 40,
+    "block": 10,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "emberling": {
+  "name": "Уголёк",
+  "art": "weaver",
+  "hp": 35,
+  "first_move": "husk",
+  "_": "Шипы: наказывает рой мелких ударов.",
+  "moves": [
+   {
+    "id": "flare",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 8,
+    "max_repeat": 2
+   },
+   {
+    "id": "husk",
+    "kind": "buff",
+    "weight": 30,
+    "thorns": 3,
+    "block": 6,
+    "max_repeat": 1
+   },
+   {
+    "id": "spit",
+    "kind": "aggro",
+    "weight": 25,
+    "damage": 6,
+    "times": 2,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "rattler": {
+  "name": "Костяная гремучка",
+  "art": "weaver",
+  "hp": 46,
+  "first_move": "lash",
+  "_": "Ржавчина: кубики остывают на ход дольше.",
+  "moves": [
+   {
+    "id": "seal",
+    "kind": "hex",
+    "weight": 30,
+    "damage": 6,
+    "rust": 1,
+    "max_repeat": 1
+   },
+   {
+    "id": "lash",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 13,
+    "max_repeat": 2
+   },
+   {
+    "id": "coil",
+    "kind": "defend",
+    "weight": 25,
+    "block": 11,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "warden": {
+  "name": "Каменный страж",
+  "art": "warden",
+  "hp": 77,
+  "first_move": "plate",
+  "_": "Пластины не сгорают в конце хода — их надо пробивать.",
+  "moves": [
+   {
+    "id": "plate",
+    "kind": "buff",
+    "weight": 25,
+    "plated": 10,
+    "max_repeat": 1
+   },
+   {
+    "id": "crush",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 14,
+    "max_repeat": 2
+   },
+   {
+    "id": "guard",
+    "kind": "defend",
+    "weight": 20,
+    "damage": 8,
+    "block": 10,
+    "max_repeat": 1
+   },
+   {
+    "id": "brand",
+    "kind": "hex",
+    "weight": 15,
+    "damage": 9,
+    "vulnerable": 2,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "knight": {
+  "name": "Костяной рыцарь",
+  "art": "knight",
+  "hp": 79,
+  "first_move": "flurry",
+  "_": "Замах: один ход на подготовку, потом тяжёлый удар.",
+  "moves": [
+   {
+    "id": "charge",
+    "kind": "buff",
+    "weight": 25,
+    "block": 7,
+    "label_override": "замахивается",
+    "then": "cleave",
+    "max_repeat": 1
+   },
+   {
+    "id": "cleave",
+    "kind": "aggro",
+    "weight": 0,
+    "damage": 22
+   },
+   {
+    "id": "seal",
+    "kind": "hex",
+    "weight": 30,
+    "damage": 6,
+    "rust": 1,
+    "max_repeat": 1
+   },
+   {
+    "id": "flurry",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 9,
+    "times": 2,
+    "max_repeat": 2
+   }
+  ]
+ },
+ "ashmaw": {
+  "name": "Пепельная пасть",
+  "art": "maw",
+  "hp": 68,
+  "first_move": "snap",
+  "moves": [
+   {
+    "id": "inhale",
+    "kind": "buff",
+    "weight": 30,
+    "block": 8,
+    "label_override": "набирает воздух",
+    "then": "roar",
+    "max_repeat": 1
+   },
+   {
+    "id": "roar",
+    "kind": "aggro",
+    "weight": 0,
+    "damage": 20
+   },
+   {
+    "id": "snap",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 11,
+    "max_repeat": 2
+   },
+   {
+    "id": "chew",
+    "kind": "aggro",
+    "weight": 25,
+    "damage": 8,
+    "times": 2,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "hexweaver": {
+  "name": "Ткач порчи",
+  "art": "weaver",
+  "hp": 61,
+  "first_move": "wither",
+  "_": "Слабость: твои удары слабее на N. Проклятие: мусорная карта в колоде до конца боя.",
+  "moves": [
+   {
+    "id": "wither",
+    "kind": "hex",
+    "weight": 35,
+    "damage": 7,
+    "weak": 3,
+    "weak_turns": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "doubt",
+    "kind": "hex",
+    "weight": 25,
+    "curse": "doubt",
+    "damage": 4,
+    "max_repeat": 1,
+    "once": true
+   },
+   {
+    "id": "bolt",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 12,
+    "max_repeat": 2
+   },
+   {
+    "id": "veil",
+    "kind": "defend",
+    "weight": 20,
+    "block": 10,
+    "self_heal": 6,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "bonepile": {
+  "name": "Груда костей",
+  "art": "maw",
+  "hp": 73,
+  "first_move": "settle",
+  "moves": [
+   {
+    "id": "settle",
+    "kind": "buff",
+    "weight": 30,
+    "plated": 11,
+    "max_repeat": 1
+   },
+   {
+    "id": "avalanche",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 6,
+    "times": 3,
+    "max_repeat": 2
+   },
+   {
+    "id": "slam",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 13,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "leech": {
+  "name": "Пиявка праха",
+  "art": "maw",
+  "hp": 58,
+  "first_move": "drain",
+  "_": "Лечится от нанесённого урона — затягивать бой невыгодно.",
+  "moves": [
+   {
+    "id": "drain",
+    "kind": "aggro",
+    "weight": 50,
+    "damage": 10,
+    "lifesteal": 6,
+    "max_repeat": 2
+   },
+   {
+    "id": "cling",
+    "kind": "defend",
+    "weight": 25,
+    "block": 9,
+    "damage": 6,
+    "max_repeat": 1
+   },
+   {
+    "id": "burst",
+    "kind": "aggro",
+    "weight": 25,
+    "damage": 7,
+    "times": 2,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "hollow": {
+  "name": "Полый",
+  "art": "hollow",
+  "hp": 65,
+  "first_move": "step",
+  "_": "Каждый следующий удар сильнее предыдущего — бой надо кончать быстро.",
+  "moves": [
+   {
+    "id": "step",
+    "kind": "aggro",
+    "weight": 70,
+    "damage": 8,
+    "scale": 3,
+    "max_repeat": 4
+   },
+   {
+    "id": "hollowout",
+    "kind": "defend",
+    "weight": 30,
+    "block": 12,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "chainmaster": {
+  "name": "Цепной надзиратель",
+  "art": "knight",
+  "hp": 100,
+  "first_move": "whip",
+  "_": "Заклинивает кубик: он остывает намного дольше.",
+  "moves": [
+   {
+    "id": "chain",
+    "kind": "hex",
+    "weight": 30,
+    "damage": 7,
+    "lock": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "whip",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 13,
+    "max_repeat": 2
+   },
+   {
+    "id": "double",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 8,
+    "times": 2,
+    "max_repeat": 2
+   },
+   {
+    "id": "brace",
+    "kind": "defend",
+    "weight": 15,
+    "block": 12,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "twinflame": {
+  "name": "Двойное пламя",
+  "art": "weaver",
+  "hp": 102,
+  "first_move": "lick",
+  "_": "Ниже половины здоровья звереет: получает силу и бьёт втрое.",
+  "moves": [
+   {
+    "id": "lick",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 11,
+    "max_repeat": 2
+   },
+   {
+    "id": "shield",
+    "kind": "defend",
+    "weight": 25,
+    "block": 11,
+    "max_repeat": 1
+   },
+   {
+    "id": "split",
+    "kind": "buff",
+    "weight": 30,
+    "gain_strength": 3,
+    "if_hp_below": 0.55,
+    "once": true,
+    "max_repeat": 1
+   },
+   {
+    "id": "frenzy",
+    "kind": "aggro",
+    "weight": 35,
+    "damage": 8,
+    "times": 3,
+    "if_hp_below": 0.55,
+    "max_repeat": 2
+   }
+  ]
+ },
+ "revenant": {
+  "name": "Пепельный ревенант",
+  "art": "hollow",
+  "hp": 92,
+  "first_move": "gather",
+  "_": "Копит силу: каждый ход подготовки делает все его удары больнее.",
+  "moves": [
+   {
+    "id": "gather",
+    "kind": "buff",
+    "weight": 30,
+    "gain_strength": 3,
+    "block": 6,
+    "max_repeat": 1
+   },
+   {
+    "id": "reap",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 13,
+    "max_repeat": 2
+   },
+   {
+    "id": "scythe",
+    "kind": "aggro",
+    "weight": 25,
+    "damage": 8,
+    "times": 2,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "gravemaw": {
+  "name": "Могильная пасть",
+  "art": "maw",
+  "hp": 102,
+  "first_move": "armor",
+  "moves": [
+   {
+    "id": "armor",
+    "kind": "buff",
+    "weight": 25,
+    "plated": 13,
+    "max_repeat": 1
+   },
+   {
+    "id": "bite",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 16,
+    "max_repeat": 2
+   },
+   {
+    "id": "grind",
+    "kind": "hex",
+    "weight": 20,
+    "damage": 9,
+    "rust": 1,
+    "max_repeat": 1
+   },
+   {
+    "id": "swallow",
+    "kind": "aggro",
+    "weight": 25,
+    "damage": 9,
+    "times": 2,
+    "lifesteal": 8,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "shrieker": {
+  "name": "Крикун",
+  "art": "weaver",
+  "hp": 87,
+  "first_move": "swipe",
+  "moves": [
+   {
+    "id": "shriek",
+    "kind": "hex",
+    "weight": 30,
+    "weak": 4,
+    "weak_turns": 2,
+    "damage": 8,
+    "max_repeat": 1
+   },
+   {
+    "id": "swipe",
+    "kind": "aggro",
+    "weight": 45,
+    "damage": 15,
+    "max_repeat": 2
+   },
+   {
+    "id": "rake",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 6,
+    "times": 3,
+    "max_repeat": 2
+   }
+  ]
+ },
+ "dreadplate": {
+  "name": "Ужасная плита",
+  "art": "warden",
+  "hp": 131,
+  "first_move": "bulwark",
+  "moves": [
+   {
+    "id": "bulwark",
+    "kind": "buff",
+    "weight": 25,
+    "plated": 15,
+    "max_repeat": 1
+   },
+   {
+    "id": "hammer",
+    "kind": "aggro",
+    "weight": 40,
+    "damage": 19,
+    "max_repeat": 2
+   },
+   {
+    "id": "quake",
+    "kind": "aggro",
+    "weight": 25,
+    "damage": 10,
+    "times": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "brand",
+    "kind": "hex",
+    "weight": 20,
+    "damage": 10,
+    "vulnerable": 2,
+    "max_repeat": 1
+   }
+  ]
+ },
+ "marrowpriest": {
+  "name": "Жрец мозга костей",
+  "art": "queen",
+  "hp": 125,
+  "first_move": "rite",
+  "moves": [
+   {
+    "id": "curse",
+    "kind": "hex",
+    "weight": 25,
+    "curse": "weight",
+    "damage": 7,
+    "once": true,
+    "max_repeat": 1
+   },
+   {
+    "id": "siphon",
+    "kind": "aggro",
+    "weight": 35,
+    "damage": 13,
+    "lifesteal": 8,
+    "max_repeat": 2
+   },
+   {
+    "id": "rite",
+    "kind": "buff",
+    "weight": 25,
+    "gain_strength": 2,
+    "block": 10,
+    "max_repeat": 1
+   },
+   {
+    "id": "wave",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 7,
+    "times": 3,
+    "max_repeat": 2
+   }
+  ]
+ },
+ "bonekeeper": {
+  "name": "Хранитель Костей",
+  "art": "bonekeeper",
+  "hp": 104,
+  "boss": true,
+  "first_move": "toll",
+  "moves": [
+   {
+    "id": "toll",
+    "kind": "aggro",
+    "weight": 35,
+    "damage": 16,
+    "max_repeat": 2
+   },
+   {
+    "id": "seal",
+    "kind": "hex",
+    "weight": 25,
+    "damage": 9,
+    "rust": 1,
+    "max_repeat": 1
+   },
+   {
+    "id": "volley",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 9,
+    "times": 2,
+    "max_repeat": 2
+   },
+   {
+    "id": "mend",
+    "kind": "defend",
+    "weight": 20,
+    "block": 13,
+    "self_heal": 6,
+    "max_repeat": 1
+   },
+   {
+    "id": "wrath",
+    "kind": "buff",
+    "weight": 30,
+    "gain_strength": 3,
+    "if_hp_below": 0.4,
+    "once": true
+   }
+  ],
+  "tax": {
+   "name": "Печать молчания",
+   "text": "Твоя рука меньше на одну карту.",
+   "hand_size": -1
+  }
+ },
+ "ashqueen": {
+  "name": "Пепельная владычица",
+  "art": "queen",
+  "hp": 145,
+  "boss": true,
+  "first_move": "pyre",
+  "moves": [
+   {
+    "id": "summon",
+    "kind": "buff",
+    "weight": 25,
+    "plated": 13,
+    "gain_strength": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "pyre",
+    "kind": "aggro",
+    "weight": 35,
+    "damage": 19,
+    "max_repeat": 2
+   },
+   {
+    "id": "embers",
+    "kind": "aggro",
+    "weight": 30,
+    "damage": 8,
+    "times": 3,
+    "max_repeat": 2
+   },
+   {
+    "id": "hex",
+    "kind": "hex",
+    "weight": 25,
+    "damage": 9,
+    "weak": 4,
+    "weak_turns": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "gather",
+    "kind": "buff",
+    "weight": 25,
+    "label_override": "собирает пламя",
+    "then": "firestorm",
+    "if_hp_below": 0.5,
+    "max_repeat": 1
+   },
+   {
+    "id": "firestorm",
+    "kind": "aggro",
+    "weight": 0,
+    "damage": 27
+   }
+  ],
+  "tax": {
+   "name": "Жар горна",
+   "text": "Кубики с 10 и более гранями остывают на ход дольше.",
+   "big_dice_cooldown": 1,
+   "big_dice_faces": 10
+  }
+ },
+ "marrowlord": {
+  "name": "Владыка Мозга Костей",
+  "art": "bonekeeper",
+  "hp": 209,
+  "boss": true,
+  "first_move": "smite",
+  "moves": [
+   {
+    "id": "decree",
+    "kind": "hex",
+    "weight": 22,
+    "damage": 10,
+    "vulnerable": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "smite",
+    "kind": "aggro",
+    "weight": 32,
+    "damage": 21,
+    "max_repeat": 2
+   },
+   {
+    "id": "hail",
+    "kind": "aggro",
+    "weight": 28,
+    "damage": 10,
+    "times": 3,
+    "max_repeat": 2
+   },
+   {
+    "id": "bulwark",
+    "kind": "buff",
+    "weight": 22,
+    "plated": 16,
+    "gain_strength": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "chain",
+    "kind": "hex",
+    "weight": 20,
+    "damage": 8,
+    "lock": 2,
+    "max_repeat": 1
+   },
+   {
+    "id": "rise",
+    "kind": "buff",
+    "weight": 40,
+    "gain_strength": 4,
+    "self_heal": 12,
+    "if_hp_below": 0.35,
+    "once": true
+   }
+  ],
+  "tax": {
+   "name": "Вторая кожа",
+   "text": "Ниже половины здоровья Владыка не чувствует ни яда, ни ожога.",
+   "rot_immune_below": 0.5
+  }
+ },
+ "_tax": "tax — налог босса: правило, которое действует весь бой и бьёт по одной конкретной экономике игрока. Босс должен ломать привычный ход игры, а не просто иметь много здоровья."
+}

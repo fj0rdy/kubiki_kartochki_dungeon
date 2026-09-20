@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- хвост -->
+    <path d="M150 150 C176 148 188 128 184 108" fill="none" stroke-width="7" stroke="#a08f6f"/>
+    <!-- задние лапы -->
+    <path d="M132 140 L148 186 L128 204 L156 204" fill="#8e7d5f"/>
+    <!-- крылья-обрубки -->
+    <path d="M120 76 C154 62 176 76 172 100 C158 92 140 92 126 100 Z" fill="#5c4a34"/>
+    <!-- грудная клетка -->
+    <path d="M46 120 C40 86 60 60 96 58 C130 60 148 86 146 122 C138 152 62 152 46 120 Z" fill="#cbb894"/>
+    <g stroke="#3a2717" stroke-width="3.5" fill="none">
+      <path d="M60 94 C78 84 112 84 132 94"/>
+      <path d="M56 110 C76 100 116 100 138 110"/>
+      <path d="M58 128 C78 118 116 118 136 128"/>
+    </g>
+    <!-- передние лапы, упёртые в землю -->
+    <path d="M60 122 L44 168 L34 204" fill="none" stroke-width="8" stroke="#a08f6f"/>
+    <path d="M34 204 L18 200 M34 204 L28 214 M34 204 L44 212" stroke-width="4"/>
+    <path d="M96 128 L86 176 L78 204" fill="none" stroke-width="7" stroke="#8e7d5f"/>
+    <path d="M78 204 L64 202 M78 204 L74 214 M78 204 L88 212" stroke-width="3.5"/>
+    <!-- шея -->
+    <path d="M62 76 L50 46" stroke-width="9" stroke="#b8a582" fill="none"/>
+    <!-- вытянутый череп с клювом -->
+    <path d="M50 46 C36 44 22 34 22 22 C22 10 34 4 48 6 C60 8 68 16 70 26 L96 34 L68 40 C64 44 58 46 50 46 Z" fill="#ded0ad"/>
+  </g>
+  <ellipse cx="40" cy="20" rx="7.5" ry="8.5" fill="#140d06"/>
+  <circle cx="40" cy="20" r="3.2" fill="#ffcf8a"/>
+</svg>

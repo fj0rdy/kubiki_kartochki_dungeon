@@ -1,0 +1,80 @@
+{
+  "_": "СООТВЕТСТВИЕ ИКОНОК. Слева — что обозначаем, справа — имя файла из assets/icons (без папки и расширения).",
+  "_where": "Имена взяты с game-icons.net. Не нравится картинка — впиши другое имя, код трогать не нужно.",
+  "_fallback": "Если файла нет, игра рисует значок символом, как раньше. Ничего не сломается.",
+  "icons": {
+    "attack": "crossed-swords",
+    "defend": "checked-shield",
+    "hex": "burning-eye",
+    "block": "shield",
+    "poison": "poison-bottle",
+    "vulnerable": "cracked-shield",
+    "weak": "broken-shield",
+    "strength": "biceps",
+    "frozen": "snowflake-2",
+    "room_fight": "crossed-swords",
+    "room_elite": "dragon-head",
+    "room_event": "scroll-unfurled",
+    "room_rest": "campfire",
+    "room_treasure": "chest",
+    "room_boss": "crowned-skull",
+    "fire": "fire",
+    "ice": "frozen-orb",
+    "nature": "vine-leaf",
+    "light": "sun",
+    "dark": "moon",
+    "room_shop": "shop",
+    "thorns": "spiky-explosion",
+    "gold": "two-coins",
+    "card_attack": "crossed-swords",
+    "card_block": "checked-shield",
+    "card_poison": "poison-bottle",
+    "card_heal": "vine-leaf",
+    "card_power": "biceps",
+    "card_hex": "burning-eye",
+    "card_dice": "chest",
+    "card_curse": "cracked-shield",
+    "scroll": "scroll-unfurled",
+    "rest": "campfire",
+    "shop": "chest",
+    "crown": "crowned-skull",
+    "power_eye": "burning-eye",
+    "heal": "vine-leaf"
+  },
+  "dice": {
+    "_": "Разворот модели, если цифры на ней не совпали с тем, что засчитала игра. Градусы по осям X, Y, Z.",
+    "model_rotation": {
+      "4": [
+        0,
+        0,
+        0
+      ],
+      "6": [
+        0,
+        0,
+        0
+      ],
+      "8": [
+        0,
+        0,
+        0
+      ],
+      "10": [
+        0,
+        0,
+        0
+      ],
+      "12": [
+        0,
+        0,
+        0
+      ],
+      "20": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "_cards": "card_* — рисунок-водяной знак на карте. Он выбирается по главному эффекту карты, если в самой карте не указано поле icon."
+}

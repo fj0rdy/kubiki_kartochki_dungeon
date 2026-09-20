@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- балахон -->
+    <path d="M100 20 C126 24 138 44 136 66 L152 128 L162 208 L38 208 L48 128 L64 66 C62 44 74 24 100 20 Z" fill="#4a3324"/>
+    <!-- складки -->
+    <g stroke="#2a1c12" stroke-width="3" fill="none">
+      <path d="M84 96 L76 208"/>
+      <path d="M116 96 L124 208"/>
+      <path d="M100 104 L100 208"/>
+    </g>
+    <!-- капюшон -->
+    <path d="M100 12 C124 12 138 32 134 58 C126 76 112 84 100 84 C88 84 74 76 66 58 C62 32 76 12 100 12 Z" fill="#5c4230"/>
+    <!-- тень в капюшоне -->
+    <path d="M100 30 C116 30 124 42 122 58 C116 72 108 78 100 78 C92 78 84 72 78 58 C76 42 84 30 100 30 Z" fill="#140d06" stroke="none"/>
+    <!-- руки с книгой -->
+    <path d="M64 108 L48 140 L74 152" fill="#4a3324"/>
+    <path d="M136 108 L152 140 L126 152" fill="#4a3324"/>
+    <path d="M74 148 L100 140 L126 148 L126 172 L100 164 L74 172 Z" fill="#ded0ad"/>
+    <path d="M100 140 L100 164" stroke-width="3"/>
+  </g>
+  <circle cx="91" cy="54" r="4.5" fill="#ffcf8a"/>
+  <circle cx="109" cy="54" r="4.5" fill="#ffcf8a"/>
+</svg>

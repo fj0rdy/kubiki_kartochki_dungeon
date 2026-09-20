@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 220" width="200" height="220">
+  <g stroke="#140d06" stroke-width="4" stroke-linejoin="round" stroke-linecap="round">
+    <!-- плащ -->
+    <path d="M70 72 L44 208 L156 208 L130 72 Z" fill="#4a5c3a"/>
+    <g stroke="#2c3922" stroke-width="3" fill="none">
+      <path d="M84 108 L74 208"/><path d="M116 108 L126 208"/>
+    </g>
+    <!-- ноги -->
+    <path d="M84 208 L86 168 L114 168 L116 208" fill="#3a3226"/>
+    <!-- туника и ремень -->
+    <path d="M72 70 L128 70 L124 130 L76 130 Z" fill="#7d6a50"/>
+    <path d="M74 122 L126 122" stroke-width="8" stroke="#3a2b1c"/>
+    <!-- мешочек с кубиками на поясе -->
+    <path d="M120 126 C136 128 142 142 136 154 C128 162 114 160 110 150 C108 138 112 128 120 126 Z" fill="#8a6a3c"/>
+    <path d="M116 128 L134 132" stroke-width="3"/>
+    <!-- руки -->
+    <path d="M72 82 L52 124 L66 140" stroke-width="8" stroke="#7d6a50" fill="none"/>
+    <path d="M128 82 L148 118" stroke-width="8" stroke="#7d6a50" fill="none"/>
+    <!-- фонарь в руке -->
+    <path d="M148 118 L148 130" stroke-width="3"/>
+    <path d="M138 130 L158 130 L162 156 L134 156 Z" fill="#d8ab55"/>
+    <!-- капюшон -->
+    <path d="M100 10 C124 10 138 30 134 54 C128 68 116 76 100 76 C84 76 72 68 66 54 C62 30 76 10 100 10 Z" fill="#5a6b46"/>
+    <path d="M100 28 C116 28 124 40 122 54 C116 66 108 72 100 72 C92 72 84 66 78 54 C76 40 84 28 100 28 Z" fill="#140d06" stroke="none"/>
+  </g>
+  <circle cx="91" cy="50" r="4.5" fill="#ffcf8a"/>
+  <circle cx="109" cy="50" r="4.5" fill="#ffcf8a"/>
+  <circle cx="148" cy="142" r="9" fill="#ffe6b0" opacity="0.9"/>
+</svg>
